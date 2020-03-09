@@ -22,7 +22,7 @@ GITHUB_PAGES_LINK
 
 ## Adding the map background
 
-You should see a plain scatterplot on the page.  If you look into the code, you'll see that we're parsing the `data/march2017_bluebikes_trip_counts.csv` file, and mapping the `latitude` and `longitude` to the `x` and `y` axes respectively.
+You should see a plain scatterplot on the page.  If you look into the code, you'll see that we're parsing the `data/march2017_bluebikes_trip_counts.csv` file, and mapping the `latitude` and `longitude` to the `x` and `y` axes respectively.  Your first task is to find an image of the map of Boston that can be used as a background to this scatterplot.  To do this, we're going to use an online tool that draws bounding boxes on maps using the latitude and longitude of the upper-left-most corner and lower-right-most corner.
 
 First, we need to determine what the bounding box of our map area should be.  Looking into `spatial.js`, you'll see that we output the minimum and maximum latitudes and longitudes into the console:
 
@@ -53,7 +53,11 @@ Lastly, you need to resize your SVG so that it has the same dimensions as your s
 
 Now that we have a scatterplot built on top of a map, let's use an additional visual channel to communicate another attribute.  We're going to map the radius of each point to correspond to the number of trips started at that location.
 
-In `spatial.js`, note that there's a commented out scale used for the radius around line 85, along with the scales for the x and y axes.  Uncomment that scale out, and then uncomment the line that uses that scale to set the radius of each point.  Note that the choice for the radius scale is not great - some of the radii are way too large, and cause occlusion.  Change the definition of the radius scale around line 90 to make the scale return more reasonable radii.  Which aspect of the scale is responsible: the domain or the range?
+First, read through the code that creates the scatterplot in `spatial.js`.  In particular, look at lines 63-104, where the `xScale` and `yScale` are initialized, and then those scales are used to map from the latitude and longitude values of each line of data into the pixel values fed to the `cx` and `cy` attributes of each scatter point.  We want to modify this code so that it uses the data to calculate a different radius for each point based on its number of trips.  To do that, we'll need a scale for the radius `rScale`, and then we'll need to use that `rScale` to set the radius of each point.
+
+In `spatial.js`, note that there's a commented out scale used for the radius around line 85, along with the scales for the x and y axes.  Uncomment that scale out, and then switch out the line around line 103 that sets the radius to `5` for the line that uses that `rScale` just below it.  Reload your web page and take a look at what we have.
+
+Note that the choice for the radius scale is not great - some of the radii are way too large, and cause occlusion.  Change the definition of the radius scale around line 90 to make the scale return more reasonable radii.  Which aspect of the scale is responsible: the domain or the range?
 
 ## Extra credit
 
