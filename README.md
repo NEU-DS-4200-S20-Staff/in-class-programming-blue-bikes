@@ -31,7 +31,7 @@ First, we need to determine what the bounding box of our map area should be.  Lo
     console.log("maxX is ", maxX);
     console.log("maxY is ", maxY);
 
-In your browser, open the javascript console and look at what the corresponding values are for the bounding box coordinates.  Then, go to the site [bboxfinder.com](bboxfinder.com), and enter your bounding box coordinates.  First, click on the bounding box selector on the left side of the page.
+In your browser, open the javascript console and look at what the corresponding values are for the bounding box coordinates.  Then, go to the site [bboxfinder.com](http://bboxfinder.com/), and enter your bounding box coordinates.  First, click on the bounding box selector on the left side of the page.
 
 ![Click on left side](bboxfinder1.png)
 
